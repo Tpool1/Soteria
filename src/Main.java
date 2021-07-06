@@ -10,16 +10,24 @@ public class Main {
         image img = new image("../data/portrait.jpeg");
         dicom_data patient1 = new dicom_data(1, img);
 
+        Block genesis = makeGenesis(patient1);
+        makeBlock(1, genesis.currentHash, "second block", patient1);
+    }
+
+    public static Block makeGenesis(dicom_data patient) {
         // make genesis block
-        Block b = new Block(0, null, "genesis", patient1);
+        Block b = new Block(0, null, "genesis", patient);
         b.mineBlock(difficulty);
         blockchain.add(b);
         System.out.println(b.toString());
+        return b;
+    }
 
+    public static void makeBlock(int index, String previousHash , String label, dicom_data patient) {
         // make second block
-        Block b2 = new Block(1, b.currentHash, "second block", patient1);
-        b2.mineBlock(difficulty);
-        blockchain.add(b2);
-        System.out.println(b2.toString());
-    } 
-}
+        Block b = new Block(index, previousHash, label, patient);
+        b.mineBlock(difficulty);
+        blockchain.add(b);
+        System.out.println(b.toString());
+    }
+} 
