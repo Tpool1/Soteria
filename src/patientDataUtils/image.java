@@ -9,9 +9,8 @@ public class image {
 
     public static int[] img_resolution = new int[] {512, 512};
     public static BufferedImage img = null;
-    public static String image_path = "../data/portrait.jpeg";
     
-    public static void main(String args[])throws IOException {
+    public image(String image_path) {
         img = read(image_path);
     }
 
@@ -24,7 +23,6 @@ public class image {
             img = new BufferedImage(img_resolution[0], img_resolution[1], BufferedImage.TYPE_INT_ARGB);
 
             img = ImageIO.read(img_path);
-
         } catch(IOException e) {
             System.out.println("Error: " + e);
         }
