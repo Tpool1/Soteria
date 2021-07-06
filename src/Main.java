@@ -6,6 +6,7 @@ public class Main {
     public static int difficulty = 5;
 
     public static void main(String[] args) {
+
         // make genesis block
         Block b = new Block(0, null, "genesis");
         b.mineBlock(difficulty);

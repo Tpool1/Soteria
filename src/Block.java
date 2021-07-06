@@ -1,4 +1,5 @@
 import java.security.*;
+import patientDataUtils.*;
 
 public class Block {
     public int index;
@@ -6,12 +7,14 @@ public class Block {
     public String currentHash;
     public String previousHash;
     public String label;
+    public dicom_data data;
     public int nonce;
 
-    public Block(int index, String previousHash, String label) {
+    public Block(int index, String previousHash, String label, dicom_data data) {
         this.index = index;
         this.timestamp = System.currentTimeMillis();
         this.label = label;
+        this.data = data;
         nonce = 0;
         currentHash = calculateHash();
     }
