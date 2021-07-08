@@ -19,7 +19,7 @@ public class gui extends JFrame implements ActionListener{
         button.addActionListener(this);
         add(button);
 
-        label = new JLabel("Enter the data");
+        label = new JLabel("Enter the load directory");
         add(label);
     }
 
@@ -49,6 +49,9 @@ public class gui extends JFrame implements ActionListener{
     }
 
     public void actionPerformed (ActionEvent e) {
-        
+        String load_path;
+        if (e.getSource() == button) {
+            load_path = tf.getText();
+        }
     }
 }
