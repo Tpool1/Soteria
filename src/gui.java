@@ -1,10 +1,26 @@
 import java.awt.Color;
-
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-public class gui extends JFrame{
+public class gui extends JFrame implements ActionListener{
+    private JLabel label;
+    private JTextField tf;
+    private JButton button;
+
     public gui () {
         super("Soteria");
+        setLayout(new FlowLayout());
+
+        tf = new JTextField (20);
+        add(tf);
+
+        button = new JButton ("Enter");
+        button.addActionListener(this);
+        add(button);
+
+        label = new JLabel("Enter the data");
+        add(label);
     }
 
     private static void createAndShowGUI () {
@@ -30,5 +46,9 @@ public class gui extends JFrame{
                 createAndShowGUI();
             }
         });
+    }
+
+    public void actionPerformed (ActionEvent e) {
+        
     }
 }
