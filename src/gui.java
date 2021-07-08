@@ -27,8 +27,10 @@ public class gui extends JFrame implements ActionListener{
         // Make sure we have nice window decorations.
         JFrame.setDefaultLookAndFeelDecorated(true);
 
-        // Create and set up the window/
+        // Create and set up the window
         JFrame frame = new gui();
+        Image icon = Toolkit.getDefaultToolkit().getImage("../data/gradient_icon.png");
+        frame.setIconImage(icon);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Set the window size and location
         frame.setSize(3000, 3000);
