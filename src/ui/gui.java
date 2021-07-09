@@ -1,7 +1,10 @@
+package ui;
+
 import java.awt.Color;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 public class gui extends JFrame implements ActionListener{
     private JLabel label;
@@ -23,7 +26,7 @@ public class gui extends JFrame implements ActionListener{
         add(label);
     }
 
-    private static void createAndShowGUI () {
+    public static void createAndShowGUI () {
         // Make sure we have nice window decorations.
         JFrame.setDefaultLookAndFeelDecorated(true);
 
@@ -54,6 +57,7 @@ public class gui extends JFrame implements ActionListener{
         String load_path;
         if (e.getSource() == button) {
             load_path = tf.getText();
+            System.out.println(load_path);
         }
     }
 }
