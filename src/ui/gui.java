@@ -23,6 +23,8 @@ public class gui extends JFrame implements ActionListener{
 
         label = new JLabel("Enter the load directory");
         add(label);
+
+        block_entry();
     }
 
     public static void createAndShowGUI () {
@@ -34,7 +36,7 @@ public class gui extends JFrame implements ActionListener{
         Image icon = Toolkit.getDefaultToolkit().getImage("../data/gradient_icon.png");
         frame.setIconImage(icon);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         // Set the window size and location
         frame.setSize(3000, 3000);
         frame.setLocationRelativeTo(null);
@@ -59,5 +61,10 @@ public class gui extends JFrame implements ActionListener{
             load_path = tf.getText();
             System.out.println(load_path);
         }
+    }
+
+    public void block_entry () {
+        JTextField tf = new JTextField (20);
+        add(tf);
     }
 }
