@@ -14,6 +14,9 @@ public class gui extends JFrame implements ActionListener{
         super("Soteria");
         setLayout(new FlowLayout());
 
+        label = new JLabel("Enter the load directory or enter a single block");
+        add(label);
+
         tf = new JTextField (20);
         add(tf);
 
@@ -21,10 +24,8 @@ public class gui extends JFrame implements ActionListener{
         button.addActionListener(this);
         add(button);
 
-        label = new JLabel("Enter the load directory");
-        add(label);
-
         block_entry();
+
     }
 
     public static void createAndShowGUI () {
@@ -46,8 +47,7 @@ public class gui extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args) {
-        // Schedule a job for the event-dispatching thread:
-        // creating and showing this application a GUI.
+        
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createAndShowGUI();
@@ -63,8 +63,20 @@ public class gui extends JFrame implements ActionListener{
         }
     }
 
+    // method to make individual block entries 
     public void block_entry () {
+        label = new JLabel("Enter the label for this block:");
         JTextField tf = new JTextField (20);
+        add(label);
         add(tf);
+
+        label = new JLabel("Enter the path for an image:");
+        JTextField data_path_entry = new JTextField(20);
+        add(label);
+        add(data_path_entry);
+
+        button = new JButton ("Enter");
+        button.addActionListener(this);
+        add(button);
     }
 }
