@@ -4,7 +4,6 @@ import java.awt.Color;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 
 public class gui extends JFrame implements ActionListener{
     private JLabel label;
@@ -35,6 +34,7 @@ public class gui extends JFrame implements ActionListener{
         Image icon = Toolkit.getDefaultToolkit().getImage("../data/gradient_icon.png");
         frame.setIconImage(icon);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         // Set the window size and location
         frame.setSize(3000, 3000);
         frame.setLocationRelativeTo(null);
