@@ -13,26 +13,32 @@ public class gui extends JPanel implements ActionListener{
 
         // define all panels for grid
         JPanel topPanel = new JPanel();
+        JPanel midPanel = new JPanel();
         JPanel bottomPanel = new JPanel();
 
         topPanel.setBorder(BorderFactory.createEtchedBorder());
+        midPanel.setBorder(BorderFactory.createEtchedBorder());
         bottomPanel.setBorder(BorderFactory.createEtchedBorder());
 
         label = new JLabel("Enter the load directory or enter a single block");
         topPanel.add(label);
 
+        JLabel dir_label = new JLabel("Load directory:");
+        midPanel.add(dir_label);
+
         tf = new JTextField (20);
-        topPanel.add(tf);
+        midPanel.add(tf);
 
         button = new JButton ("Enter");
         button.addActionListener(this);
-        topPanel.add(button);
+        midPanel.add(button);
 
         block_entry(bottomPanel);
 
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.PAGE_AXIS);
         setLayout(boxLayout);
         add(topPanel);
+        add(midPanel);
         add(bottomPanel);
 
     }
@@ -83,8 +89,8 @@ public class gui extends JPanel implements ActionListener{
         panel.add(label);
         panel.add(data_path_entry);
 
-        button = new JButton ("Enter");
-        button.addActionListener(this);
-        panel.add(button);
+        JButton blockButton = new JButton ("Enter");
+        blockButton.addActionListener(this);
+        panel.add(blockButton);
     }
 }
