@@ -1,47 +1,55 @@
 package ui;
 
-import java.awt.Color;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class gui extends JFrame implements ActionListener{
+public class gui extends JPanel implements ActionListener{
     private JLabel label;
     private JTextField tf;
     private JButton button;
 
     public gui () {
-        super("Soteria");
-        setLayout(new FlowLayout());
+
+        // define all panels for grid
+        JPanel topPanel = new JPanel();
+        JPanel bottomPanel = new JPanel();
+
+        topPanel.setBorder(BorderFactory.createEtchedBorder());
+        bottomPanel.setBorder(BorderFactory.createEtchedBorder());
 
         label = new JLabel("Enter the load directory or enter a single block");
-        add(label);
+        topPanel.add(label);
 
         tf = new JTextField (20);
-        add(tf);
+        topPanel.add(tf);
 
         button = new JButton ("Enter");
         button.addActionListener(this);
-        add(button);
+        topPanel.add(button);
 
-        block_entry();
+        block_entry(bottomPanel);
+
+        BoxLayout boxLayout = new BoxLayout(this, BoxLayout.PAGE_AXIS);
+        setLayout(boxLayout);
+        add(topPanel);
+        add(bottomPanel);
 
     }
 
     public static void createAndShowGUI () {
-        // Make sure we have nice window decorations.
+
         JFrame.setDefaultLookAndFeelDecorated(true);
 
-        // Create and set up the window
-        JFrame frame = new gui();
+        // create frame and add icon
+        JFrame frame = new JFrame();
         Image icon = Toolkit.getDefaultToolkit().getImage("../data/gradient_icon.png");
         frame.setIconImage(icon);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Set the window size and location
-        frame.setSize(3000, 3000);
-        frame.setLocationRelativeTo(null);
-        frame.getContentPane().setBackground(Color.BLACK);
+        // add panel with elements
+        JPanel panel = new gui();
+        frame.add(panel);
         frame.pack();
         frame.setVisible(true);
     }
@@ -64,19 +72,19 @@ public class gui extends JFrame implements ActionListener{
     }
 
     // method to make individual block entries 
-    public void block_entry () {
+    public void block_entry (JPanel panel) {
         label = new JLabel("Enter the label for this block:");
         JTextField tf = new JTextField (20);
-        add(label);
-        add(tf);
+        panel.add(label);
+        panel.add(tf);
 
         label = new JLabel("Enter the path for an image:");
         JTextField data_path_entry = new JTextField(20);
-        add(label);
-        add(data_path_entry);
+        panel.add(label);
+        panel.add(data_path_entry);
 
         button = new JButton ("Enter");
         button.addActionListener(this);
-        add(button);
+        panel.add(button);
     }
 }
