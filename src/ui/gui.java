@@ -15,10 +15,12 @@ public class gui extends JPanel implements ActionListener{
         JPanel topPanel = new JPanel();
         JPanel midPanel = new JPanel();
         JPanel bottomPanel = new JPanel();
+        JPanel footPanel = new JPanel();
 
         topPanel.setBorder(BorderFactory.createEtchedBorder());
         midPanel.setBorder(BorderFactory.createEtchedBorder());
         bottomPanel.setBorder(BorderFactory.createEtchedBorder());
+        footPanel.setBorder(BorderFactory.createEtchedBorder());
 
         label = new JLabel("Enter the load directory or enter a single block");
         topPanel.add(label);
@@ -35,11 +37,16 @@ public class gui extends JPanel implements ActionListener{
 
         block_entry(bottomPanel);
 
+        JButton plus_button = new JButton("+");
+        plus_button.addActionListener(this);
+        footPanel.add(plus_button);
+
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.PAGE_AXIS);
         setLayout(boxLayout);
         add(topPanel);
         add(midPanel);
         add(bottomPanel);
+        add(footPanel);
 
     }
 
