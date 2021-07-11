@@ -3,13 +3,14 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import patientDataUtils.*;
 
 public class gui extends JPanel implements ActionListener{
     private JLabel label;
     private JTextField tf;
     private JButton button;
 
-    public String load_path;
+    public static String load_path;
 
     public gui () {
 
@@ -81,7 +82,7 @@ public class gui extends JPanel implements ActionListener{
     public void actionPerformed (ActionEvent e) {
         if (e.getSource() == button) {
             load_path = tf.getText();
-            System.out.println(load_path);
+            path_loader loader = new path_loader(load_path);
         }
     }
 
