@@ -9,6 +9,8 @@ public class gui extends JPanel implements ActionListener{
     private JTextField tf;
     private JButton button;
 
+    public String load_path;
+
     public gui () {
 
         // define all panels for grid
@@ -77,7 +79,6 @@ public class gui extends JPanel implements ActionListener{
     }
 
     public void actionPerformed (ActionEvent e) {
-        String load_path;
         if (e.getSource() == button) {
             load_path = tf.getText();
             System.out.println(load_path);
