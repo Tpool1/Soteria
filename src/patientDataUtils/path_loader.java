@@ -27,4 +27,10 @@ public class path_loader {
 
        return files.toArray(new String[]{});
    }
+
+   public static void loadFiles(String[] fileArr) {
+       for (int i = 0; i < fileArr.length; i++) {
+           String path = fileArr[i];
+       }
+   }
 }
