@@ -1,9 +1,6 @@
 package patientDataLoad;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import patientDataUtils.image;
 import java.util.StringJoiner;
 
