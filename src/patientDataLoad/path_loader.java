@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import patientDataUtils.image;
+import java.util.StringJoiner;
 
 public class path_loader {
    
@@ -18,7 +19,16 @@ public class path_loader {
    public static String[] getFiles(String directory) {
        File dir = new File(directory);
 
-       String[] files = dir.list();
+       String[] files;
+       files = dir.list();
+
+       // get full path for all files
+       for (int i = 0; i < files.length; i++) {
+        StringJoiner joiner = new StringJoiner(File.separator);
+        joiner.add(directory).add(files[i]);
+        String fullPath = joiner.toString();
+        files[i] = fullPath;
+        }
 
        return files;
    }
