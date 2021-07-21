@@ -24,7 +24,7 @@ public class image {
 
             img = ImageIO.read(img_path);
         } catch(IOException e) {
-            System.out.println("Error: " + e);
+            System.out.println("Error: " + e + " " + path);
         }
 
         return img;

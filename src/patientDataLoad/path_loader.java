@@ -2,15 +2,16 @@ package patientDataLoad;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import patientDataUtils.image;
 
 public class path_loader {
+   
+   public image[] imgArr; 
+
    public path_loader(String load_path) {
        String[] filesArr = getFiles(load_path);
        image[] imgArr = loadFiles(filesArr);
-       System.out.println(Arrays.toString(imgArr));
    }
 
    public static String[] getFiles(String directory) {
