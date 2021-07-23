@@ -10,7 +10,7 @@ public class path_loader {
 
    public path_loader(String load_path) {
        String[] filesArr = getFiles(load_path);
-       image[] imgArr = loadFiles(filesArr);
+       imgArr = loadFiles(filesArr);
    }
 
    public static String[] getFiles(String directory) {
