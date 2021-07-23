@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import patientDataUtils.*;
 
-public class gui extends JPanel implements ActionListener{
+public class gui extends JPanel {
     private JLabel label;
     private JTextField tf;
     private JButton button;
@@ -39,13 +39,23 @@ public class gui extends JPanel implements ActionListener{
         midPanel.add(tf);
 
         button = new JButton ("Enter");
-        button.addActionListener(this);
+        button.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                String load_path = tf.getText();
+                path_loader loader = new path_loader(load_path);
+                imgs = loader.imgArr;
+            }
+        });
         midPanel.add(button);
 
         block_entry(bottomPanel);
 
         JButton plus_button = new JButton("+");
-        plus_button.addActionListener(this);
+        plus_button.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                ;
+            }
+        });
         footPanel.add(plus_button);
 
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.PAGE_AXIS);
@@ -83,14 +93,6 @@ public class gui extends JPanel implements ActionListener{
         });
     }
 
-    public void actionPerformed (ActionEvent e) {
-        if (e.getSource() == button) {
-            load_path = tf.getText();
-            path_loader loader = new path_loader(load_path);
-            imgs = loader.imgArr;
-        }
-    }
-
     // method to make individual block entries 
     public void block_entry (JPanel panel) {
         label = new JLabel("Enter the label for this block:");
@@ -104,7 +106,11 @@ public class gui extends JPanel implements ActionListener{
         panel.add(data_path_entry);
 
         JButton blockButton = new JButton ("Enter");
-        blockButton.addActionListener(this);
+        blockButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                ;
+            }
+        });
         panel.add(blockButton);
     }
 }
