@@ -13,6 +13,7 @@ public class gui extends JPanel implements ActionListener{
     private JTextField tf;
     private JButton button;
 
+    public static image[] imgs;
     public static String load_path;
 
     public gui () {
@@ -86,7 +87,7 @@ public class gui extends JPanel implements ActionListener{
         if (e.getSource() == button) {
             load_path = tf.getText();
             path_loader loader = new path_loader(load_path);
-            image[] imgs = loader.imgArr;
+            imgs = loader.imgArr;
         }
     }
 
