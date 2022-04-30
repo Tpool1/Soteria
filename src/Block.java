@@ -15,6 +15,7 @@ public class Block {
         this.timestamp = System.currentTimeMillis();
         this.label = label;
         this.data = data;
+        this.previousHash = previousHash;
         nonce = 0;
         currentHash = calculateHash();
     }

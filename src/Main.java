@@ -10,7 +10,7 @@ public class Main {
 
         gui.createAndShowGUI();
 
-        image img = new image("../data/portrait.jpeg");
+        image img = new image("../data/gradient_icon.png.jpeg");
         dicom_data patient1 = new dicom_data(1, img);
 
         Block genesis = makeGenesis(patient1);
