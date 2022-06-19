@@ -14,11 +14,12 @@ class block:
         self.currentHash = self.calculateHash()
 
     def calculateHash(self):
-        block_string = json.dumps(self.__dict__, sort_keys=True)
-        return sha256(block_string.encode()).hexdigest()
+        input = str(self.index) + str(self.timestamp) + str(self.previousHash) + str(self.label) + str(self.nonce)
+        hash = sha256(input.encode()).hexdigest()
+        return hash
     
     def mineBlock(self, difficulty):
-        computed_hash = self.calculateHash
+        computed_hash = self.calculateHash()
         while not computed_hash.startswith('0' * difficulty):
             self.nonce += 1
             computed_hash = self.calculateHash()
