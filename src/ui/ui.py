@@ -11,6 +11,9 @@ class ui(tk.Tk):
 
         self.bc = chain()
 
+        style = ttk.Style()
+        style.theme_use("clam")
+
         self.title('Soteria')
         self.geometry('350x100')
 
