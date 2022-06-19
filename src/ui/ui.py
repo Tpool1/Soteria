@@ -1,62 +1,77 @@
-import PySimpleGUI as sg
+import tkinter as tk
+from tkinter import ttk
+
 from chain import chain
 from load_patient import load_patient
 from batch_load import batch_load
 
-def ui():
+class ui(tk.Tk):
+    def __init__(self):
+        super().__init__()
 
-    bc = chain()
+        self.bc = chain()
 
-    sg.theme("LightBlue")
+        self.title('Soteria')
+        self.geometry('350x100')
 
-    import_layout = [[sg.Text("Enter a Patient Image Directory:"), sg.InputText()],
-                [sg.Text("Enter a Patient Clinical Path:"), sg.InputText()],
-                [sg.Button("Single Patient"), sg.Button("Batch")]]
+        tabControl = ttk.Notebook(self)
 
-    blockchain_view_layout = [[sg.Text(bc.getDescription())]]
+        import_tab = ttk.Frame(tabControl)
+        view_tab = ttk.Frame(tabControl)
 
-    tab_group = [
-                    [sg.TabGroup(
-                        [[sg.Tab('Import Data', import_layout,
-                        tooltip='Import Data', element_justification='right'),
+        tabControl.add(import_tab, text='Import')
+        tabControl.add(view_tab, text='View')
 
-                        sg.Tab('View', blockchain_view_layout)]],
+        tabControl.pack(expand=1, fill='both')
 
-                        tab_location='centertop',
-                        border_width=5), 
-                        
-                        sg.Button('Exit')
+        self.single_button = ttk.Button(import_tab, text="Single Patient", command=self.singlePatient)
+        self.batch_button = ttk.Button(import_tab, text="Batch", command=self.batch)
 
-                    ]
-                ]
+        self.img_label = tk.Label(import_tab, text="Enter a Patient Image Directory:")
+        self.clinical_label = tk.Label(import_tab, text="Enter a Patient Clinical Path:")
 
-    window = sg.Window("Soteria", tab_group)
+        self.img_entry_var = tk.StringVar()
+        self.clinical_entry_var = tk.StringVar()
+        self.img_entry = ttk.Entry(import_tab, textvariable=self.img_entry_var)
+        self.clinical_entry = ttk.Entry(import_tab, textvariable=self.clinical_entry_var)
 
-    while True:
-        event, values = window.read()
+        self.blockchain_info = tk.StringVar()
+        self.blockchain_info.set(self.bc.getDescription())
+        self.blockchain_info_label = ttk.Label(view_tab, textvariable=self.blockchain_info)
 
-        if event == sg.WIN_CLOSED or event == "Exit":
-            bc.printChain()
-            break
+        self.img_label.grid(row=0, column=0)
+        self.clinical_label.grid(row=1, column=0)
 
-        elif event == "Single Patient":
+        self.img_entry.grid(row=0, column=1)
+        self.clinical_entry.grid(row=1, column=1)
 
-            p = load_patient(values[1], values[0])
+        self.single_button.grid(row=2, column=0)
+        self.batch_button.grid(row=2, column=1)
 
-            # make genesis if adding first block
-            if len(bc.chain) == 0:
-                bc.makeGenesis(p)
+        self.blockchain_info_label.grid(row=0, column=0)
+
+    def singlePatient(self):
+        p = load_patient(self.clinical_entry_var.get(), self.img_entry_var.get())
+
+        # make genesis if adding first block
+        if len(self.bc.chain) == 0:
+            self.bc.makeGenesis(p)
+        else:
+            self.bc.makeBlock("patient added via UI", p)
+
+        self.refreshView()
+
+    def batch(self):
+        patients = batch_load(self.clinical_entry_var.get(), self.img_entry_var.get())
+
+        for p in patients:
+            if len(self.bc.chain) == 0:
+                self.bc.makeGenesis(p)
             else:
-                bc.makeBlock("patient added via UI", p)
+                self.bc.makeBlock("patient added via UI in a batch", p)
 
-        elif event == "Batch":
+        self.refreshView()
 
-            patients = batch_load(values[1], values[0])
-
-            for p in patients:
-                if len(bc.chain) == 0:
-                    bc.makeGenesis(p)
-                else:
-                    bc.makeBlock("patient added via UI in a batch", p)
-
-    window.close()
+    def refreshView(self):
+        self.blockchain_info.set(self.bc.getDescription())
+                

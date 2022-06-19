@@ -1,3 +1,5 @@
 from ui.ui import ui
 
-ui()
+gui = ui()
+gui.mainloop()
+gui.bc.printChain()
