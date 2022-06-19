@@ -14,7 +14,9 @@ class chain:
         self.chain.append(b)
         return b
 
-    def makeBlock(self, index, previousHash, label, patient):
+    def makeBlock(self, label, patient):
+        index = len(self.chain)
+        previousHash = self.chain[index-1].currentHash
         b = block(index, previousHash, label, patient)
         b.mineBlock(self.difficulty)
         self.chain.append(b)
@@ -28,9 +30,3 @@ class chain:
             print("Time Stamp:", block.timestamp)
             print("Current Hash:", block.currentHash) 
             print("- - - - - - - - - -")
-
-bc = chain()
-genesis = bc.makeGenesis(patient(1, np.empty((10, 10), dtype=np.int8), np.empty((10, 128, 128), dtype=np.int8)))
-bc.makeBlock(1, genesis.currentHash, "patient 2", patient(2, np.empty((10, 10)), np.empty((10, 128, 128))))
-
-bc.printChain()

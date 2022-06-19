@@ -8,8 +8,8 @@ def load_patient(clinical_path, img_dir):
 
     # load image data and patient id
     load_paths = list()
-    for (dirpath, dirnames) in os.walk(img_dir):
-        load_paths += [os.path.join(dirpath, file) for file in dirnames]
+    for (dirpath, dirnames, filenames) in os.walk(img_dir):
+        load_paths += [os.path.join(dirpath, file) for file in filenames]
     
     img_files = []
     ids = []
@@ -23,9 +23,12 @@ def load_patient(clinical_path, img_dir):
     assert len(set(ids)) == 1
     p_id = ids[0]
 
+    # extract only numbers from p_id
+    p_id = [int(s) for s in p_id.split() if s.isdigit()]
+
     # load clinical data
     df = pd.read_csv(clinical_path)
-    df = df.set_index(0)
+    df = df.set_index(df.columns[0])
     
     p_clinical = df[p_id]
 

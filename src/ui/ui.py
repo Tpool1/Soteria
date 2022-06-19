@@ -1,25 +1,34 @@
 import PySimpleGUI as sg
-from ..chain import chain
-from ..load_patient import load_patient
+from chain import chain
+from load_patient import load_patient
 
-bc = chain()
+def ui():
 
-sg.theme("DarkAmber")
+    bc = chain()
 
-layout = [[sg.Text("Enter a Patient Image Directory:"), sg.InputText()],
-            [sg.Text("Enter a Patient Clinical Path:"), sg.InputText()],
-            [sg.Button("OK"), sg.Button("Cancel")]]
+    sg.theme("DarkAmber")
 
-window = sg.Window("Soteria", layout)
+    layout = [[sg.Text("Enter a Patient Image Directory:"), sg.InputText()],
+                [sg.Text("Enter a Patient Clinical Path:"), sg.InputText()],
+                [sg.Button("OK"), sg.Button("Cancel")]]
 
-while True:
-    event, values = window.read()
+    window = sg.Window("Soteria", layout)
 
-    if event == sg.WIN_CLOSED or event == "Cancel":
-        break
+    while True:
+        event, values = window.read()
 
-    elif event == "OK":
+        if event == sg.WIN_CLOSED or event == "Cancel":
+            bc.printChain()
+            break
 
-        p = load_patient(values[1], values[0])
- 
-window.close()
+        elif event == "OK":
+
+            p = load_patient(values[1], values[0])
+
+            # make genesis if adding first block
+            if len(bc.chain) == 0:
+                bc.makeGenesis(p)
+            else:
+                bc.makeBlock("patient added via UI", p)
+
+    window.close()
