@@ -35,3 +35,4 @@ def load_patient(clinical_path, img_dir):
     p = patient(p_id, p_clinical, img_files)
 
     return p
+    

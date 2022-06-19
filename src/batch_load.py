@@ -1,9 +1,4 @@
-import pydicom
 import os
-import pandas as pd
-from yaml import load
-
-from patient import patient
 from load_patient import load_patient
 
 def batch_load(clinical_path, image_dir):

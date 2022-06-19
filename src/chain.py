@@ -21,12 +21,24 @@ class chain:
         b.mineBlock(self.difficulty)
         self.chain.append(b)
 
-    def printChain(self):
+    def getDescription(self):
+        des = ""
         for block in self.chain:
-            print("- - - - - - - - - -")
-            print("Index:", block.index)
-            print("Previous Hash:", block.previousHash)
-            print("Label:", block.label)
-            print("Time Stamp:", block.timestamp)
-            print("Current Hash:", block.currentHash) 
-            print("- - - - - - - - - -")
+            des+="- - - - - - - - - -\n"
+            des+="Index:"
+            des+=str(block.index)+"\n"
+            des+="Previous Hash:"
+            des+=str(block.previousHash)+"\n"
+            des+="Label:"
+            des+=str(block.label)+"\n"
+            des+="Time Stamp:"
+            des+=str(block.timestamp)+"\n"
+            des+="Current Hash:"
+            des+=str(block.currentHash)+"\n"
+            des+="- - - - - - - - - -"
+
+        return des
+
+    def printChain(self):
+        des = self.getDescription()
+        print(des)

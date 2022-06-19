@@ -7,18 +7,35 @@ def ui():
 
     bc = chain()
 
-    sg.theme("DarkAmber")
+    sg.theme("LightBlue")
 
-    layout = [[sg.Text("Enter a Patient Image Directory:"), sg.InputText()],
+    import_layout = [[sg.Text("Enter a Patient Image Directory:"), sg.InputText()],
                 [sg.Text("Enter a Patient Clinical Path:"), sg.InputText()],
-                [sg.Button("Single Patient"), sg.Button("Batch"), sg.Button("Cancel")]]
+                [sg.Button("Single Patient"), sg.Button("Batch")]]
 
-    window = sg.Window("Soteria", layout)
+    blockchain_view_layout = [[sg.Text(bc.getDescription())]]
+
+    tab_group = [
+                    [sg.TabGroup(
+                        [[sg.Tab('Import Data', import_layout,
+                        tooltip='Import Data', element_justification='right'),
+
+                        sg.Tab('View', blockchain_view_layout)]],
+
+                        tab_location='centertop',
+                        border_width=5), 
+                        
+                        sg.Button('Exit')
+
+                    ]
+                ]
+
+    window = sg.Window("Soteria", tab_group)
 
     while True:
         event, values = window.read()
 
-        if event == sg.WIN_CLOSED or event == "Cancel":
+        if event == sg.WIN_CLOSED or event == "Exit":
             bc.printChain()
             break
 
